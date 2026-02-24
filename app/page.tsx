@@ -1,61 +1,71 @@
-import Image from "next/image";
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import Link from "next/link";
+import { getAllBlogs } from "@/lib/blog";
+import { profile, projects, skills } from "@/content/portfolio";
 
-import Link from 'next/link'
-
-export default function Home() {
-  // 1) Set blogs directory
-  const blogDir = "content/blogs"
-
-  // 2) Find all files in the blog directory
-  const files = fs.readdirSync(path.join(blogDir))
-
-  // 3) For each blog found
-  const blogs = files.map(filename => {
-
-    // 4) Read the content of that blog
-    const fileContent = fs.readFileSync(path.join(blogDir, filename), 'utf-8')
-
-    // 5) Extract the metadata from the blog's content
-    const { data: frontMatter } = matter(fileContent)
-
-    // 6) Return the metadata and page slug
-    return {
-      meta: frontMatter,
-      slug: filename.replace('.mdx', '')
-    }
-  })
+export default function HomePage() {
+  const latestPosts = getAllBlogs().slice(0, 3);
+  const featuredProjects = projects.filter((project) => project.featured).slice(0, 2);
 
   return (
-    <main className="flex flex-col">
-      <h1 className="text-3xl font-bold">
-        My Blogging Site
-      </h1>
+    <div className="stack-lg">
+      <section className="hero">
+        <p className="eyebrow">{profile.role}</p>
+        <h1>Building reliable products with clean UX.</h1>
+        <p>{profile.bio}</p>
+        <div className="actions">
+          <Link href="/projects" className="btn btn-primary">
+            View Projects
+          </Link>
+          <Link href="/blogs" className="btn btn-ghost">
+            Read Blog
+          </Link>
+        </div>
+      </section>
 
-
-      <section className='py-10'>
-        <h2 className='text-2xl font-bold'>
-          Latest Blogs
-        </h2>
-
-        <div className='py-2'>
-          {blogs.map(blog => (
-            <Link href={'/blogs/' + blog.slug} passHref key={blog.slug}>
-              <div className='py-2 flex justify-between align-middle gap-2'>
-                  <div>
-                      <h3 className="text-lg font-bold">{blog.meta.title}</h3>
-                      <p className="text-gray-400">{blog.meta.description}</p>
-                  </div>
-                  <div className="my-auto text-gray-400">
-                      <p>{blog.meta.date}</p>
-                  </div>
-              </div>
-            </Link>
+      <section className="stack-md">
+        <div className="section-head">
+          <h2>Featured Projects</h2>
+          <Link href="/projects">See all</Link>
+        </div>
+        <div className="card-grid">
+          {featuredProjects.map((project) => (
+            <article key={project.name} className="card">
+              <h3>{project.name}</h3>
+              <p>{project.summary}</p>
+              <p className="chip-row">{project.stack.join(" • ")}</p>
+              <Link href={project.href}>Project Link</Link>
+            </article>
           ))}
         </div>
       </section>
-    </main>
+
+      <section className="stack-md">
+        <div className="section-head">
+          <h2>Latest Writing</h2>
+          <Link href="/blogs">All posts</Link>
+        </div>
+        <div className="card-grid">
+          {latestPosts.map((post) => (
+            <article key={post.slug} className="card">
+              <p className="small">{post.frontmatter.date}</p>
+              <h3>{post.frontmatter.title}</h3>
+              <p>{post.frontmatter.description}</p>
+              <Link href={`/blogs/${post.slug}`}>Read post</Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="stack-sm">
+        <h2>Skills</h2>
+        <div className="skills-grid">
+          {skills.map((skill) => (
+            <span key={skill} className="chip">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
