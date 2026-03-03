@@ -7,17 +7,24 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+  const aboutPhotoOrientation: "portrait" | "landscape" = "portrait";
+
   return (
     <section className="stack-lg page-enter">
       {/* ── Intro ──────────────────────────────────────── */}
       <div className="about-header">
-        <div className="about-photo-wrap">
+        <div className={`about-photo-wrap about-photo-wrap--${aboutPhotoOrientation}`}>
           <Image
             src="/images/zahir-c.jpg"
             alt="Zahir Choudhry"
             width={320}
             height={400}
-            className="about-photo"
+            sizes={
+              aboutPhotoOrientation === "portrait"
+                ? "(max-width: 680px) 80vw, (max-width: 900px) 42vw, 340px"
+                : "(max-width: 680px) 100vw, (max-width: 900px) 54vw, 520px"
+            }
+            className={`about-photo about-photo--${aboutPhotoOrientation}`}
             priority
           />
         </div>

@@ -65,6 +65,7 @@ export default function RootLayout({
                 alt="Zahir Choudhry"
                 width={32}
                 height={32}
+                sizes="32px"
                 className="logo-avatar"
               />
               Zahir Choudhry

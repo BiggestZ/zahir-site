@@ -6,6 +6,7 @@ import { profile, projects, skills } from "@/content/portfolio";
 export default function HomePage() {
   const latestPosts = getAllBlogs().slice(0, 3);
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 2);
+  const heroPhotoOrientation: "portrait" | "landscape" = "portrait";
 
   return (
     <div className="stack-lg">
@@ -28,13 +29,18 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-          <div className="hero-photo-wrap">
+          <div className={`hero-photo-wrap hero-photo-wrap--${heroPhotoOrientation}`}>
             <Image
               src="/images/zahir-choudhry.jpg"
               alt="Zahir Choudhry"
               width={280}
               height={340}
-              className="hero-photo"
+              sizes={
+                heroPhotoOrientation === "portrait"
+                  ? "(max-width: 680px) 80vw, (max-width: 900px) 45vw, 300px"
+                  : "(max-width: 680px) 100vw, (max-width: 900px) 52vw, 460px"
+              }
+              className={`hero-photo hero-photo--${heroPhotoOrientation}`}
               priority
             />
           </div>
