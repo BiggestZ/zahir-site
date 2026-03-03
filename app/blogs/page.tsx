@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllBlogs } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blog | Zahir Portfolio",
+  title: "Blog | Zahir",
   description: "Technical writing, lessons learned, and build notes.",
 };
 
@@ -10,18 +10,28 @@ export default function BlogsPage() {
   const posts = getAllBlogs();
 
   return (
-    <section className="stack-md">
-      <h1>Blog</h1>
-      <p>Add a new markdown file under `content/blogs` to publish a post.</p>
+    <section className="stack-md page-enter">
+      <div>
+        <h1 className="page-title">Writing</h1>
+        <p className="page-subtitle" style={{ marginTop: "0.75rem" }}>
+          Notes on building, shipping, and the craft of software.
+        </p>
+      </div>
 
-      <div className="stack-sm">
+      <div className="blog-list">
         {posts.map((post) => (
-          <article key={post.slug} className="card">
-            <p className="small">{post.frontmatter.date}</p>
-            <h2>{post.frontmatter.title}</h2>
-            <p>{post.frontmatter.description}</p>
-            <Link href={`/blogs/${post.slug}`}>Read post</Link>
-          </article>
+          <Link
+            key={post.slug}
+            href={`/blogs/${post.slug}`}
+            className="blog-row"
+          >
+            <time className="blog-row-date">{post.frontmatter.date}</time>
+            <div className="blog-row-content">
+              <span className="blog-row-title">{post.frontmatter.title}</span>
+              <span className="blog-row-desc">{post.frontmatter.description}</span>
+            </div>
+            <span className="blog-row-arrow">→</span>
+          </Link>
         ))}
       </div>
     </section>

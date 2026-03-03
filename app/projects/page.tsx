@@ -2,23 +2,28 @@ import Link from "next/link";
 import { projects } from "@/content/portfolio";
 
 export const metadata = {
-  title: "Projects | Zahir Portfolio",
+  title: "Projects | Zahir",
   description: "A collection of projects and case studies.",
 };
 
 export default function ProjectsPage() {
   return (
-    <section className="stack-md">
-      <h1>Projects</h1>
-      <p>Selected product and engineering work.</p>
+    <section className="stack-md page-enter">
+      <div>
+        <h1 className="page-title">Projects</h1>
+        <p className="page-subtitle" style={{ marginTop: "0.75rem" }}>
+          Selected product and engineering work.
+        </p>
+      </div>
 
       <div className="card-grid">
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <article key={project.name} className="card">
+            <span className="card-index">0{i + 1}</span>
             <h2>{project.name}</h2>
             <p>{project.summary}</p>
-            <p className="chip-row">{project.stack.join(" • ")}</p>
-            <Link href={project.href}>Visit project</Link>
+            <p className="chip-row">{project.stack.join(" · ")}</p>
+            <Link href={project.href}>Visit project →</Link>
           </article>
         ))}
       </div>

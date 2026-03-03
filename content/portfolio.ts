@@ -1,51 +1,61 @@
 export const profile = {
-  name: "Zahir",
-  role: "Full-Stack Developer",
-  location: "United States",
-  bio: "I build practical web experiences with clean UI, reliable backend logic, and content workflows that are easy to maintain.",
-  email: "hello@example.com",
+  name: "Full Name",
+  role: "Role",
+  location: "Location",
+  bio: "Description",
+  email: "e@mail.com",
   resumeUrl: "#",
   social: [
-    { label: "GitHub", href: "https://github.com" },
-    { label: "LinkedIn", href: "https://www.linkedin.com" },
+    { label: "GitHub", href: "https://github.com/username" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/username" },
     { label: "X", href: "https://x.com" },
   ],
 };
 
 export const skills = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Node.js",
-  "Tailwind CSS",
-  "PostgreSQL",
-  "Prisma",
-  "REST APIs",
+  "Skill 1",
+  "Skill 2"
+];
+
+export const experience = [
+  {
+    company: "Company 1",
+    role: "...",
+    period: "July 2025 – Present",
+    location: "San Francisco Bay Area, CA",
+    bullets: [
+      "A",
+      "B"
+    ],
+  },
+  {
+    company: "Company 2",
+    role: "...",
+    period: "Jan 2023 – May 2025",
+    location: "Los Angeles, CA",
+    bullets: [
+      "A"
+    ],
+  },
+];
+
+export const education = [
+  {
+    school: "University / College",
+    degree: "",
+    period: "2021 – 2025",
+    location: "",
+    details: ". . .",
+  },
 ];
 
 export const projects = [
   {
-    name: "SaaS Analytics Dashboard",
+    name: "Project 1",
     summary:
-      "Real-time KPI dashboard with role-based auth, saved views, and CSV export.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
+      "Description",
+    stack: ["Tools", "Used"],
     href: "#",
     featured: true,
-  },
-  {
-    name: "E-commerce Storefront",
-    summary:
-      "Headless storefront with fast product discovery, checkout, and order tracking.",
-    stack: ["React", "Node.js", "Stripe"],
-    href: "#",
-    featured: true,
-  },
-  {
-    name: "Developer Portfolio CMS",
-    summary:
-      "Portfolio and blog platform powered by file-based markdown content.",
-    stack: ["Next.js", "MDX", "Tailwind CSS"],
-    href: "#",
-    featured: false,
   },
 ];

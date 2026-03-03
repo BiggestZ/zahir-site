@@ -3,6 +3,7 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  transpilePackages: ["next-mdx-remote"],
   turbopack: {
     root: path.join(__dirname),
   },

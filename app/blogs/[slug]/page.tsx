@@ -28,7 +28,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.frontmatter.title} | Blog`,
+    title: `${post.frontmatter.title} | Zahir`,
     description: post.frontmatter.description,
   };
 }
@@ -46,12 +46,12 @@ export default async function BlogPostPage({
   }
 
   return (
-    <article className="stack-md">
-      <div>
-        <p className="small">{post.frontmatter.date}</p>
-        <h1>{post.frontmatter.title}</h1>
-        <p>{post.frontmatter.description}</p>
-      </div>
+    <article>
+      <header className="post-header">
+        <time className="post-date">{post.frontmatter.date}</time>
+        <h1 className="post-title">{post.frontmatter.title}</h1>
+        <p className="post-description">{post.frontmatter.description}</p>
+      </header>
 
       <div className="prose prose-zinc">
         <MDXRemote source={post.content} components={{ Button }} options={options} />
