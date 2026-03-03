@@ -61,7 +61,7 @@ export default function RootLayout({
           <header className="site-header">
             <Link href="/" className="logo">
               <Image
-                src="/images/zahir.jpg"
+                src="/images/Zahir.jpg"
                 alt="Zahir Choudhry"
                 width={32}
                 height={32}
