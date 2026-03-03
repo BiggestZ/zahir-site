@@ -33,7 +33,8 @@ export default function AboutPage() {
             help me grow as a developer and engineer.
           </p>
           <p className="page-subtitle" style={{ marginTop: "0.75rem" }}>
-            
+            Outside of work, I love to go to the gym, cook, play basketball, and watch movies.
+            I am also very interested in cars and working / modifying some on my own some day.
           </p>
         </div>
       </div>
