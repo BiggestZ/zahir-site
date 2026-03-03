@@ -645,6 +645,75 @@ p {
   aspect-ratio: 16 / 10;
 }
 
+/* ── HERO NAME ─────────────────────────────────────────── */
+/* Override .hero h1 (specificity 0,1,1) with .hero .hero-name (0,2,0) */
+.hero .hero-name {
+  font-size: inherit;
+  max-width: none;
+  margin: 0.45rem 0 0.75rem;
+  line-height: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hero-name-first,
+.hero-name-last {
+  font-family: var(--font-display, 'DM Serif Display'), Georgia, serif;
+  font-style: normal;
+  font-size: clamp(2.2rem, 5.8vw, 4.4rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.0;
+}
+
+.hero-tagline {
+  font-family: var(--font-body, 'Plus Jakarta Sans'), system-ui, sans-serif;
+  font-size: clamp(0.875rem, 1.6vw, 0.975rem);
+  color: var(--muted);
+  max-width: 44ch;
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  margin-bottom: 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HERO PHOTO OVERLAY ─────────────────────────────────── */
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    148deg,
+    rgba(232, 103, 42, 0.24) 0%,
+    rgba(201, 147, 61, 0.12) 38%,
+    transparent 68%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-photo-tag {
+  position: absolute;
+  bottom: 0.875rem;
+  right: 0.875rem;
+  z-index: 3;
+  font-family: var(--font-nav, 'Syne'), system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(237, 232, 224, 0.9);
+  background: rgba(12, 10, 8, 0.6);
+  border: 1px solid rgba(232, 103, 42, 0.38);
+  padding: 0.28rem 0.58rem;
+  border-radius: 3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 /* ── ABOUT LAYOUT ──────────────────────────────────────── */
 .about-header {
   display: flex;

@@ -14,8 +14,12 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-inner">
           <div className="hero-text">
+            <h1 className="hero-name">
+              <span className="hero-name-first">Zahir</span>
+              <span className="hero-name-last">Choudhry</span>
+            </h1>
             <span className="eyebrow">{profile.role}</span>
-            <h1>Building ideas that balance quality &amp; performance.</h1>
+            <p className="hero-tagline">Building ideas that balance quality &amp; performance.</p>
             <p>{profile.bio}</p>
             <div className="actions">
               <Link href="/projects" className="btn btn-primary">
@@ -43,6 +47,8 @@ export default function HomePage() {
               className={`hero-photo hero-photo--${heroPhotoOrientation}`}
               priority
             />
+            <div className="hero-photo-overlay" aria-hidden="true" />
+            <span className="hero-photo-tag" aria-hidden="true">Z·C</span>
           </div>
         </div>
       </section>
