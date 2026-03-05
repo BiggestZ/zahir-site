@@ -53,7 +53,7 @@ export default async function BlogPostPage({
         <p className="post-description">{post.frontmatter.description}</p>
       </header>
 
-      <div className="prose prose-zinc">
+      <div className="prose">
         <MDXRemote source={post.content} components={{ Button }} options={options} />
       </div>
     </article>

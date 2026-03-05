@@ -28,7 +28,7 @@ export default function HomePage() {
               <Link href="/blogs" className="btn btn-ghost">
                 Read Blog
               </Link>
-              <a href={profile.resumeUrl} className="btn btn-ghost">
+              <a href={profile.resumeUrl} className="btn btn-ghost" download>
                 Resume
               </a>
             </div>

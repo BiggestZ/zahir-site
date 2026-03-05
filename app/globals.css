@@ -802,9 +802,19 @@ p {
 
 /* ── PROSE ─────────────────────────────────────────────── */
 .prose {
-  max-width: 100%;
+  max-width: 72ch;
   animation: fadeIn 0.5s 0.2s ease both;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+  text-wrap: pretty;
+  line-height: 1.78;
+  font-size: clamp(1rem, 0.98rem + 0.18vw, 1.08rem);
+  letter-spacing: 0.005em;
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-bold: var(--text);
+  --tw-prose-links: var(--accent);
 }
 
 .prose :where(h1, h2, h3, h4, h5) {
@@ -814,7 +824,25 @@ p {
 }
 
 .prose :where(p, li) {
-  color: var(--muted);
+  color: var(--text);
+}
+
+.prose p + p {
+  margin-top: 1.05em;
+}
+
+.prose :where(ul, ol) {
+  margin: 1em 0;
+  padding-left: 1.25em;
+}
+
+.prose :where(li + li) {
+  margin-top: 0.35em;
+}
+
+.prose strong,
+.prose b {
+  color: var(--text) !important;
 }
 
 .prose a {

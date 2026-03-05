@@ -4,7 +4,7 @@ export const profile = {
   location: "United States",
   bio: "I build agentic-workflows that get stuff done. Also have experience building backends, and looking to  start fullstack too.",
   email: "zjchoudhry@gmail.com",
-  resumeUrl: "#",
+  resumeUrl: "/Zahir-Choudhry-Resume.pdf",
   social: [
     { label: "GitHub", href: "https://github.com/biggestZ" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/zahir-choudhry" },

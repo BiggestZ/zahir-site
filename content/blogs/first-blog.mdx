@@ -1,26 +1,91 @@
 ---
-title: "Building This Portfolio"
-date: "2026-02-20"
-description: "How I structured this portfolio and blog using Next.js and MDX."
+title: "My First Post! + How/Why I Built This Portfolio"
+date: "2026-03-05"
+description: "How I structured this portfolio and blog using Next.js and MDX & why I made it at all."
 tags:
   - nextjs
   - mdx
   - portfolio
 featured: true
 ---
+## Hello, World
 
-This portfolio is set up for quick iteration:
+<br/>
 
-- Reusable layout and routes for projects, writing, and contact
-- Blog content from markdown files with frontmatter
-- Optional interactive components via MDX
+My name is **Zahir Choudhry**. As of writing this, I'm working as an AI Engineering Intern at [Gentoro.ai](https://gentoro.ai).
+This website is something I put off for a long time — not because I didn't want one, but because
+frontend development has always been one of my biggest weaknesses. This site is my first real step toward changing that. In this blog post, I will discuss:
+- Why I made this website 
+- Why I made this blog 
+- Why I chose MDX to make it.
 
-### Why MDX?
+---
 
-MDX lets me mix markdown content with React components for richer explanations.
+## Why I Made This
 
-<Button text="MDX works here" />
+I love clean, modern, intuitive websites. But every time I tried to build one myself, the result felt:
 
-### Next Steps
+- Incredibly tedious to put together
+- Slower to iterate on than it should have been
+- Visually disappointing compared to what I'd imagined
 
-I will keep adding posts under `content/blogs` and expand project case studies with screenshots and metrics.
+I'd picture something elegant in my head and end up with something clunky and awkward. So I avoided it — for years. What finally changed was the rise of AI-assisted development tools like **Claude Code** and **Codex**. 
+These tools helped me overcome my inability to create my letting me take a step back and just design.
+
+I could stop nitpicking CSS files and divs and just start planning with the bigger picture in mind. AI Tools like these allow anyone to skip the mindnumbing aspects of programming, letting a dull multi-day task turn into a creative 3 hour brainstorming session. What started as a way to get more comfortable with frontend gradually became a lesson in the viability and purpose of AI tools in both professional and recreational coding.
+
+---
+
+## Why I Started a Blog
+
+In my journey toward becoming an AI engineer, I've learned one thing clearly: Small blogs and personal GitHub repos have taught me more than polished courses ever did. Open source code is the backbone of modern 
+software development, and the standard holds true with knowledge as well. Random engineers documenting their thinking. People writing about their mistakes. Someone sharing a small breakthrough. Those were the resources that made me feel:
+<br/>
+> *"Why would I pay for a course when I can get real answers here?"*
+<br/>
+This blog is my attempt to become one of those small resources for someone else. But it's also a bit selfish — in a good way. I learn better when I write. I retain more when I explain (It's why I love to teach). And I forget things quickly when I don't document them. I am the annoying person that commented everyline before AI did.
+
+So this blog serves two purposes:
+
+1. A place to store what I'm learning
+2. A forcing function to clarify my thinking
+
+If something here helps someone else, that's a bonus.
+
+---
+
+## How I Built This Site
+
+This portfolio is built with **Next.js** and **MDX**.
+
+I chose this stack deliberately:
+
+- **Next.js** for routing, server components, and easy deployment
+- **MDX** for writing content as code
+- **Frontmatter** for metadata (title, tags, description)
+- A clean, reusable layout for both projects and blog posts
+
+The structure is intentionally simple:
+
+| Route | Purpose |
+|-------|---------|
+| `/projects` | Case studies |
+| `/blog` | Long-form writing |
+| `/contact` | Straightforward reach |
+
+Blog posts live in `content/blogs/` as `.mdx` files. This gives me fast iteration, version-controlled writing, easy scalability, and the ability to mix prose with React components when the content calls for it.
+
+---
+
+## Why MDX?
+
+MDX was a deliberate choice. It lets me write like Markdown while still being able to import React components, embed interactive demos, and create reusable content blocks — all in the same file.
+
+Instead of just *explaining* a concept, I can eventually *show it* . For example:
+
+- Interactive state visualizers
+- Toggleable code comparisons
+- Small UI experiments
+- Live AI demo components
+
+That transforms the blog from static text into a sandbox. And that's exactly where I want it to go. While I am not making the most use of MDX's capabilities in this post, I plan to learn more about just what it can do and make the most of it. I hope you stick around and see all the cool things I build :)
