@@ -36,7 +36,7 @@ export default function HomePage() {
           </div>
           <div className={`hero-photo-wrap hero-photo-wrap--${heroPhotoOrientation}`}>
             <Image
-              src="/images/new.jpg"
+              src="/images/new.JPG"
               alt="Zahir Choudhry"
               width={280}
               height={340}
