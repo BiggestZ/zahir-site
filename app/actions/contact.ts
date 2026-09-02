@@ -4,10 +4,21 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const SUBJECT_MAX_LENGTH = 100;
+
 export type ContactState = {
   status: "idle" | "success" | "error";
   message: string;
 };
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 export async function sendContactEmail(
   _prevState: ContactState,
@@ -15,10 +26,19 @@ export async function sendContactEmail(
 ): Promise<ContactState> {
   const name = (formData.get("name") as string)?.trim();
   const email = (formData.get("email") as string)?.trim();
+  const subject = (formData.get("subject") as string)?.trim();
   const message = (formData.get("message") as string)?.trim();
 
-  if (!name || !email || !message) {
+  if (!name || !email || !subject || !message) {
     return { status: "error", message: "All fields are required." };
+  }
+
+  if (subject.length > SUBJECT_MAX_LENGTH) {
+    return { status: "error", message: `Subject must be ${SUBJECT_MAX_LENGTH} characters or fewer.` };
+  }
+
+  if (/[\r\n]/.test(subject)) {
+    return { status: "error", message: "Subject cannot contain line breaks." };
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,14 +51,15 @@ export async function sendContactEmail(
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL!,
       replyTo: email,
-      subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      subject: `[${subject}] New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
       html: `
         <div style="font-family: sans-serif; max-width: 500px;">
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> <a href="mailto:${encodeURIComponent(email)}">${escapeHtml(email)}</a></p>
+          <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
-          <p style="white-space: pre-wrap;">${message}</p>
+          <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
         </div>
       `,
     });

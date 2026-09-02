@@ -1,69 +1,67 @@
 export const profile = {
   name: "Zahir",
   role: "AI Engineer",
-  location: "United States",
-  bio: "I build agentic-workflows that get stuff done. Also have experience building backends, and looking to  start fullstack too.",
+  location: "San Francisco, CA",
+  bio: "AI Engineer who owns systems end-to-end — from architecture through production — at early-stage, VC-backed AI startups. I build backend infrastructure, APIs, and AI agents operating at scale.",
   email: "zjchoudhry@gmail.com",
   resumeUrl: "/Zahir-Choudhry-Resume.pdf",
   social: [
     { label: "GitHub", href: "https://github.com/biggestZ" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/zahir-choudhry" },
-    { label: "X", href: "https://x.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/zahirchoudhry" },
   ],
 };
 
 export const skills = [
   "Python",
-  "PostgreSQL",
-  "REST APIs",
-  "Docker",
-  "LangChain/LangGraph",
-  "System Design",
-  "AI Coding Tools [Claude, Codex, etc]",
   "TypeScript",
   "Java",
+  "Agentic Workflows (LangGraph, MCP)",
+  "RAG / Hybrid Semantic Search",
+  "Prompt-Injection Defense",
+  "FastAPI",
+  "Flask",
   "Next.js",
   "React",
-  "Node.js",
-  "Tailwind CSS"
-  
+  "PostgreSQL",
+  "Pinecone",
+  "Docker",
+  "AWS (EC2 + CDK) / GCP / Azure",
+  "System Design",
+  "AI Coding Tools [Claude, Codex, Cursor]",
 ];
 
 export const experience = [
   {
     company: "Gentoro.ai",
+    role: "AI Engineer",
+    period: "Sep 2025 – Present",
+    location: "Menlo Park, CA",
+    bullets: [
+      "Built and hardened production integrations with three external systems (Bullhorn ATS, Gmail, Microsoft Graph) behind a swappable provider interface — reverse-engineering undocumented behavior (a silent sender-format quirk, an unstated OAuth scope requirement) that no public docs covered.",
+      "Built a hybrid retrieval and prompt-injection-hardened LLM pipeline that cut inference costs ~80% while screening and routing 1,000+ applicants per posting via LLM scoring and reply-intent triage.",
+      "Designed a Postgres-backed reliability layer so multi-step agent workflows stayed correct even when individual steps failed.",
+      "Led a 4-person engineering team shipping a 3-service, ~20K-line production platform (Next.js frontend, FastAPI backend, PostgreSQL, 310+ unit tests); partnered directly with enterprise customers through weekly demos and technical reviews.",
+    ],
+  },
+  {
+    company: "Gentoro.ai",
     role: "AI Engineer Intern",
-    period: "July 2025 – Present",
-    location: "San Francisco Bay Area, CA",
+    period: "Jul 2025 – Sep 2025",
+    location: "Menlo Park, CA",
     bullets: [
-      "Pioneered development of MCP agents to demonstrate enterprise value while creating simple solutions for customer deployment.",
-      "Engineered an intelligent Recruitment Agent that worked end-to-end to automate candidate qualification checking and interview scheduling, reducing interview time by 80%",
-      "Leveraged Webhooks and React frontend capablities to trigger the agentic workflow.",
+      "Built the initial prototype of an autonomous recruiting agent (LangGraph, MCP) integrating the Bullhorn ATS, Gmail, and Google Calendar APIs to automate resume ingestion through interview scheduling.",
+      "Established the agent architecture, model-routing design, and service boundaries that became the foundation of Gentoro's production recruiting platform.",
     ],
   },
   {
-    company: "Occidental College",
-    role: "Computer Science SSAP Teaching Assistant",
-    period: "Jan 2023 – May 2025",
-    location: "Los Angeles, CA",
-    bullets: [
-      "Provide personalized academic support and guidance to undergraduate students enrolled in Computer Science courses.",
-      "Assist students in understanding complex concepts, debugging code, and completing assignments in languages such as Python, Java, and C++.",
-      "Conduct interactive tutoring sessions to reinforce fundamental principles in data structures, algorithms, and software engineering.",
-      "Collaborate with faculty to develop supplemental materials and workshops to enhance student learning outcomes.",
-      "Foster a supportive and inclusive learning environment, empowering students of diverse backgrounds to excel in their coursework."
-    ],
-  },
-  {
-    company: "Onto Innovations",
+    company: "Onto Innovation",
     role: "Software Engineer Intern",
-    period: "May 2023 – Aug 2023",
-    location: "Milpitas, CA",
+    period: "May 2024 – Aug 2024",
+    location: "San Jose, CA",
     bullets: [
-      "Built internal software tools that streamlined data processing and analysis for engineers.",
-      "Designed and implemented a data visualization framework integrating legacy datasets with new inputs, enabling faster comparison and trend detection.",
-      "Gained hands-on experience in data engineering, backend development, and UI/UX design using Python, PANDAS, Tkinter primarily.",
-      "Presented solutions to senior engineers and executives, demonstrating both technical expertise and the ability to communicate insights effectively."
+      "Built a data visualization platform that cut optical lens comparison time from 2+ hours to 5 minutes; presented to engineering leadership, driving adoption across multiple teams.",
+      "Developed Python automation tools to process inspection data from semiconductor manufacturing systems, reducing manual analysis time and improving workflow efficiency.",
+      "Collaborated with hardware and software engineers to identify bottlenecks and design scalable internal tooling.",
     ],
   },
 ];
@@ -71,21 +69,38 @@ export const experience = [
 export const education = [
   {
     school: "Occidental College",
-    degree: "B.A. Computer Science - Math Minor",
+    degree: "B.A. Computer Science, Cum Laude",
     period: "2021 – 2025",
     location: "Los Angeles, CA",
-    details: "Cum Laude, Computer Science Tutor & Mentor.",
+    details: "Relevant Coursework: Large Language Models, Software Engineering, Automata Theory, AI, Machine Learning.",
   },
   {
-    school: "Chinese University of Hong Kon",
+    school: "Chinese University of Hong Kong",
     degree: "Study Abroad",
-    period: " August 2023 – December 2023",
+    period: "August 2023 – December 2023",
     location: "Shatin, New Territories, HK",
     details: "Did a study abroad to get a chance to learn from a top 25 CS Institution in the world.",
+  },
+  {
+    school: "California Institute of Technology",
+    degree: "Coursework",
+    period: "August 2024 - December 2024",
+    location: "Pasadena, CA",
+    details: "Supplemental coursework alongside Occidental College studies.",
   },
 ];
 
 export const projects = [
+  {
+    name: "Chatbot-Security",
+    summary:
+      "LLM trust & safety testing framework: a FastAPI chatbot with a mock RAG pipeline and an automated adversarial test suite, pairing an intentionally insecure endpoint against a hardened one to validate defenses against untrusted input.",
+    details:
+      "Built a FastAPI chatbot with a mock RAG pipeline and an automated adversarial test suite, pairing an intentionally insecure endpoint against a hardened one to validate defenses against untrusted input — the kind of trust boundary that matters for an agent talking directly to users. Implemented input-filtering and output-guardrail middleware to block prompt-injection and data-exfiltration attacks without rejecting legitimate conversation.",
+    stack: ["Python", "FastAPI", "Prompt-Injection Defense", "RAG"],
+    href: "https://github.com/BiggestZ/Chatbot-Security",
+    featured: true,
+  },
   {
     name: "Candidate Database",
     summary:
@@ -98,9 +113,11 @@ export const projects = [
     name: "Agentic Recruitment Workflow",
     summary:
       "Created an agentic workflow to automate the recruitment process, worked on from 0-1.",
+    details:
+      "Built the initial prototype of an autonomous recruiting agent (LangGraph, MCP) integrating the Bullhorn ATS, Gmail, and Google Calendar APIs to automate resume ingestion through interview scheduling. Established the agent architecture, model-routing design, and service boundaries that became the foundation of Gentoro's production recruiting platform.",
     stack: ["Python", "LangGraph", "Typescript, Docker"],
     href: "#",
-    featured: true,
+    featured: false,
   },
   {
     name: "Developer Portfolio CMS",

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { projects } from "@/content/portfolio";
+import ProjectLink from "@/components/ProjectLink";
 
 export const metadata = {
   title: "Projects | Zahir",
@@ -23,7 +23,7 @@ export default function ProjectsPage() {
             <h2>{project.name}</h2>
             <p>{project.summary}</p>
             <p className="chip-row">{project.stack.join(" · ")}</p>
-            <Link href={project.href}>Visit project →</Link>
+            <ProjectLink project={project}>Visit project →</ProjectLink>
           </article>
         ))}
       </div>

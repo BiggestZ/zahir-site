@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { DM_Serif_Display, Plus_Jakarta_Sans, Syne, Fira_Code } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
@@ -86,6 +87,7 @@ export default function RootLayout({
             <p>Built with Next.js</p>
           </footer>
         </div>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

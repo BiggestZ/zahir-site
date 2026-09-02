@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllBlogs } from "@/lib/blog";
 import { profile, projects, skills } from "@/content/portfolio";
+import ProjectLink from "@/components/ProjectLink";
 
 export default function HomePage() {
   const latestPosts = getAllBlogs().slice(0, 3);
@@ -28,14 +29,14 @@ export default function HomePage() {
               <Link href="/blogs" className="btn btn-ghost">
                 Read Blog
               </Link>
-              <a href={profile.resumeUrl} className="btn btn-ghost" download>
-                Resume
-              </a>
+              <Link href="/contact" className="btn btn-ghost">
+                Request Resume
+              </Link>
             </div>
           </div>
           <div className={`hero-photo-wrap hero-photo-wrap--${heroPhotoOrientation}`}>
             <Image
-              src="/images/zahir-choudhry.jpg"
+              src="/images/new.jpg"
               alt="Zahir Choudhry"
               width={280}
               height={340}
@@ -66,7 +67,7 @@ export default function HomePage() {
               <h3>{project.name}</h3>
               <p>{project.summary}</p>
               <p className="chip-row">{project.stack.join(" · ")}</p>
-              <Link href={project.href}>View project →</Link>
+              <ProjectLink project={project}>View project →</ProjectLink>
             </article>
           ))}
         </div>
