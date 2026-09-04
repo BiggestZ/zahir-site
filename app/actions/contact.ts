@@ -6,6 +6,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const SUBJECT_MAX_LENGTH = 100;
 
+const SPAM_PATTERN =
+  /\b(seo|backlinks?|domain authority|rank(ing)? on google|page 1|guest post|web design services|increase your traffic)\b/i;
+
+const SUCCESS_STATE: ContactState = {
+  status: "success",
+  message: "Message sent! I'll be in touch soon.",
+};
+
 export type ContactState = {
   status: "idle" | "success" | "error";
   message: string;
@@ -24,10 +32,20 @@ export async function sendContactEmail(
   _prevState: ContactState,
   formData: FormData
 ): Promise<ContactState> {
+  const honeypotWebsite = (formData.get("website") as string)?.trim();
+  const honeypotCompany = (formData.get("company") as string)?.trim();
+  if (honeypotWebsite || honeypotCompany) {
+    return SUCCESS_STATE;
+  }
+
   const name = (formData.get("name") as string)?.trim();
   const email = (formData.get("email") as string)?.trim();
   const subject = (formData.get("subject") as string)?.trim();
   const message = (formData.get("message") as string)?.trim();
+
+  if (SPAM_PATTERN.test(`${subject} ${message}`)) {
+    return SUCCESS_STATE;
+  }
 
   if (!name || !email || !subject || !message) {
     return { status: "error", message: "All fields are required." };
@@ -64,7 +82,7 @@ export async function sendContactEmail(
       `,
     });
 
-    return { status: "success", message: "Message sent! I'll be in touch soon." };
+    return SUCCESS_STATE;
   } catch {
     return { status: "error", message: "Something went wrong. Please try again." };
   }

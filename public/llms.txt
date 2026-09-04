@@ -1,0 +1,18 @@
+# Zahir Choudhry
+
+> Zahir Choudhry is an AI Engineer based in San Francisco, CA. He builds agentic systems, RAG pipelines, and backend infrastructure for VC-backed AI startups, currently as an Associate AI Engineer at Gentoro.ai.
+
+Zahir owns systems end-to-end — from architecture through production — and specializes in LangGraph/MCP agentic workflows, hybrid semantic search, prompt-injection defense, and FastAPI/Next.js backend systems.
+
+## Key pages
+
+- [Home](https://zahir-choudhry.com/): Overview, featured projects, and core skills.
+- [About](https://zahir-choudhry.com/about): Background, experience, and education.
+- [Projects](https://zahir-choudhry.com/projects): Selected engineering work, including LLM security testing and agentic recruiting workflows.
+- [Blog](https://zahir-choudhry.com/blogs): Technical writing on agentic systems, RAG, and backend engineering.
+- [Contact](https://zahir-choudhry.com/contact): Get in touch about freelance or full-time roles.
+
+## Elsewhere
+
+- [GitHub](https://github.com/biggestZ)
+- [LinkedIn](https://www.linkedin.com/in/zahirchoudhry)

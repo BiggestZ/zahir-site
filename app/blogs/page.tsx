@@ -2,8 +2,9 @@ import Link from "next/link";
 import { getAllBlogs } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blog | Zahir",
-  description: "Technical writing, lessons learned, and build notes.",
+  title: "Blog",
+  description:
+    "Technical writing on agentic systems, RAG, and backend engineering from Zahir Choudhry, an AI Engineer building production AI infrastructure.",
 };
 
 export default function BlogsPage() {

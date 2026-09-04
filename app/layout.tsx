@@ -4,6 +4,7 @@ import Image from "next/image";
 import { DM_Serif_Display, Plus_Jakarta_Sans, Syne, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { SITE_URL } from "@/lib/site";
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
@@ -42,9 +43,38 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
+const SITE_DESCRIPTION =
+  "Zahir Choudhry is an AI Engineer building agentic systems, RAG pipelines, and backend infrastructure for VC-backed AI startups in San Francisco.";
+
 export const metadata: Metadata = {
-  title: "Zahir — Aspiring AI Engineer",
-  description: "Portfolio website and markdown-powered blog.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Zahir Choudhry — AI Engineer | Agentic Systems, RAG, FastAPI",
+    template: "%s | Zahir Choudhry",
+  },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: "Zahir Choudhry — AI Engineer",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Zahir Choudhry",
+    images: [
+      {
+        url: "/images/zahir-choudhry.jpg",
+        width: 900,
+        height: 1600,
+        alt: "Zahir Choudhry",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zahir Choudhry — AI Engineer",
+    description: SITE_DESCRIPTION,
+    images: ["/images/zahir-choudhry.jpg"],
+  },
 };
 
 export default function RootLayout({

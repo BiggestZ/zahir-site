@@ -2,8 +2,9 @@ import Image from "next/image";
 import { profile, skills, experience, education } from "@/content/portfolio";
 
 export const metadata = {
-  title: "About | Zahir",
-  description: "Background, strengths, and engineering focus.",
+  title: "About",
+  description:
+    "Background, technical focus, and experience of Zahir Choudhry, an AI Engineer specializing in agentic systems, RAG, and backend infrastructure.",
 };
 
 export default function AboutPage() {

@@ -2,8 +2,9 @@ import { profile } from "@/content/portfolio";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
-  title: "Contact | Zahir",
-  description: "Ways to get in touch.",
+  title: "Contact",
+  description:
+    "Get in touch with Zahir Choudhry, an AI Engineer open to freelance and full-time roles in agentic systems and backend engineering.",
 };
 
 const socialLinks = profile.social.map((item) => ({

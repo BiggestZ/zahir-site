@@ -2,13 +2,32 @@ import { projects } from "@/content/portfolio";
 import ProjectLink from "@/components/ProjectLink";
 
 export const metadata = {
-  title: "Projects | Zahir",
-  description: "A collection of projects and case studies.",
+  title: "Projects",
+  description:
+    "Selected engineering work from Zahir Choudhry, including LLM security testing, RAG-powered tools, and agentic recruiting workflows.",
+};
+
+const projectsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: projects.map((project, i) => ({
+    "@type": "SoftwareSourceCode",
+    position: i + 1,
+    name: project.name,
+    description: project.summary,
+    programmingLanguage: project.stack,
+    author: { "@type": "Person", name: "Zahir Choudhry" },
+    ...(project.href !== "#" ? { codeRepository: project.href } : {}),
+  })),
 };
 
 export default function ProjectsPage() {
   return (
     <section className="stack-md page-enter">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd).replace(/</g, "\\u003c") }}
+      />
       <div>
         <h1 className="page-title">Projects</h1>
         <p className="page-subtitle" style={{ marginTop: "0.75rem" }}>

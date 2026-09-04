@@ -47,6 +47,13 @@ export default function ContactForm() {
 
   return (
     <Form ref={formRef} action={action} validationMode="onBlur" className="contact-form">
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="website">Website</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="form-row">
         <FormField name="name" validate={validateRequired("Name")}>
           <FormLabel>Name</FormLabel>

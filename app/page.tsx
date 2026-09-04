@@ -3,6 +3,24 @@ import Image from "next/image";
 import { getAllBlogs } from "@/lib/blog";
 import { profile, projects, skills } from "@/content/portfolio";
 import ProjectLink from "@/components/ProjectLink";
+import { SITE_URL } from "@/lib/site";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Zahir Choudhry",
+  jobTitle: profile.role,
+  url: SITE_URL,
+  image: `${SITE_URL}/images/zahir-choudhry.jpg`,
+  description: profile.bio,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "San Francisco",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  sameAs: profile.social.map((item) => item.href),
+};
 
 export default function HomePage() {
   const latestPosts = getAllBlogs().slice(0, 3);
@@ -11,6 +29,11 @@ export default function HomePage() {
 
   return (
     <div className="stack-lg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+      />
+
       {/* ── Hero ───────────────────────────────────────── */}
       <section className="hero">
         <div className="hero-inner">

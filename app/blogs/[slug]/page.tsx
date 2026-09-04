@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import Button from "@/components/mdx/Button";
 import { getBlogBySlug, getBlogSlugs } from "@/lib/blog";
+import { SITE_URL } from "@/lib/site";
 
 const options = {
   mdxOptions: {
@@ -28,8 +29,20 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.frontmatter.title} | Zahir`,
+    title: post.frontmatter.title,
     description: post.frontmatter.description,
+    openGraph: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+      type: "article",
+      publishedTime: post.frontmatter.date,
+      tags: post.frontmatter.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+    },
   };
 }
 
@@ -45,8 +58,26 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description,
+    datePublished: post.frontmatter.date,
+    author: {
+      "@type": "Person",
+      name: "Zahir Choudhry",
+      url: SITE_URL,
+    },
+    url: `${SITE_URL}/blogs/${post.slug}`,
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
+      />
       <header className="post-header">
         <time className="post-date">{post.frontmatter.date}</time>
         <h1 className="post-title">{post.frontmatter.title}</h1>
