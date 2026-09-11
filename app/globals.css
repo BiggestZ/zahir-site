@@ -833,9 +833,8 @@ p {
   animation: fadeIn 0.5s 0.2s ease both;
   overflow-wrap: break-word;
   word-break: normal;
-  hyphens: auto;
   text-wrap: pretty;
-  line-height: 1.78;
+  line-height: 1.7;
   font-size: clamp(1rem, 0.98rem + 0.18vw, 1.08rem);
   letter-spacing: 0.005em;
   --tw-prose-body: var(--text);
@@ -854,8 +853,18 @@ p {
   color: var(--text);
 }
 
-.prose p + p {
-  margin-top: 1.05em;
+.prose p {
+  margin-bottom: 1.5em;
+}
+
+.prose h2 {
+  margin-top: 3em;
+  margin-bottom: 0.9em;
+}
+
+/* Don't stack paragraph spacing with heading spacing */
+.prose p + h2 {
+  margin-top: 1.8em;
 }
 
 .prose :where(ul, ol) {

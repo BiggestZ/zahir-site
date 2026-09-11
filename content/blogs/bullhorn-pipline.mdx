@@ -1,0 +1,100 @@
+---
+title: "Building an Agentic ATS System"
+date: "2026-09-10"
+description: "An AI sourcing pipeline that integrates a legacy ATS"
+tags:
+  - Python
+  - FastAPI
+  - Hybrid Semantic Search
+  - Agentic Pipeline
+  - Next.js
+  - PostgreSQL
+  - RAG
+  - TypeScript
+  - CI/CD
+  - LLM Evaluation
+featured: true
+---
+
+This post is a summary of what I built, learned, and leaned on while putting together my first production-level agentic system. I won't go deep into every piece here — I'll be writing follow-up posts on the individual pieces over the coming weeks, so keep an eye out for those.
+
+**Bullhorn Agentic Dashboard** is an agentic pipeline — with an MCP server sitting in front of the Bullhorn ATS — that lets a recruiter run the whole job from one place: post a role, source candidates, draft outreach, and handle replies, with an LLM doing the grunt work at every step.
+
+A recruiter posts a job:
+
+- The system runs hybrid search over an embedded résumé corpus for people who actually fit
+- An agent drafts personalized outreach for each candidate based on their résumé and the job description
+- Once drafts are done, the agent waits for the recruiter to review and edit them
+- After the recruiter approves, **the recruiter sends out all outreach, not the agent**
+- The agent monitors replies from candidates, triages for interest, and grades the candidates who responded positively
+
+You can try a demo of the dashboard here → **[Bullhorn Agentic Dashboard demo](https://unofficial-bullhorn-ats-dashboard-chi.vercel.app/)**. It's seeded with fictional candidates and runs a limited slice of the product. Full code is on **[GitHub](https://github.com/BiggestZ/unofficial-bullhorn-ats-dashboard)**, and a demo of the whole thing in action — not just the constrained public version — is coming soon.
+
+I started this as the only person on the project, building it for a real client. Here's what it does, how it works, and what I'd do differently.
+
+## The Job Before the Software
+
+Recruiting inside an ATS looks like this:
+
+A requirement comes in. You search your own database — a decade-plus of résumés the company already paid to collect — using whatever keyword syntax the system gives you. You get back 200+ people, all with varying levels of qualification for the role, and you manually work through them one at a time to figure out which is which.
+
+Then you reach out to the ones who "look right." The same email, name swapped, with one sentence about why *them* specifically. That sentence is the part that actually works — and it's also the first thing to go when you're writing it for the fortieth time before lunch.
+
+Then you wait. Hundreds of replies trickle in over the next week — some yes, some no, some asking about salary. Every yes means going back to a résumé you skimmed on Tuesday and deciding, properly this time, whether this person is worth an hour of the hiring manager's day.
+
+That's three problems, and only the middle one is really about writing:
+
+1. Keyword search over résumés misses people who are obviously qualified — the Staff Engineer whose résumé never says "senior," the Python developer whose résumé just says "Django."
+2. The sentence doing the actual work — the one that mentions something true and specific about a person, not just their name — is what gets someone who isn't actively looking to open the email at all. It's also the one thing that doesn't survive contact with two hundred candidates and one afternoon.
+3. Grading twenty replies consistently, days apart, is something people are bad at and models are good at.
+
+## How I Fixed It
+
+Three problems, three fixes, one gate that doesn't move.
+
+**1. Keyword search missing qualified people**
+
+The problem with keyword search is that it treats every résumé as a bag of words, hunting for one specific term. That works fine for capturing a narrow idea:
+
+> If you're looking for a machine learning engineer, `machine learning` as a keyword makes sense.
+
+But this approach can't tell the difference between an engineer with 20+ years of machine learning experience and a college student listing it as coursework. And if that engineer wrote "scikit-learn" or "ML" instead, keyword search would miss them entirely — great for the college student, not so great for the recruiter.
+
+To fix this, I built a hybrid search that combines semantic search with BM25, so recruiters can find candidates who both fit the role and have the specific skills they're after. The basic flow:
+
+- Ingestion parses each résumé, chunks it by section, embeds it, and stores it in Postgres with pgvector.
+- When a recruiter posts a job, search runs hybrid retrieval over that corpus — dense vectors merged with Postgres's own keyword search — and returns a ranked shortlist instead of whatever the ATS's built-in search felt like guessing.
+
+**2. Personalization dying at scale**
+
+Once a recruiter approves the shortlist, the system drafts one reusable outreach template rather than two hundred mail-merged copies. The recruiter reviews it, edits it, picks who receives it, and sends it themselves — from their own Gmail or Outlook mailbox over OAuth. For each candidate on the list, the agent pulls from their already-stored profile data to write a personalized line, so the recruiter only has to worry about the general message and formatting.
+
+A deliberate design choice here: the recruiter is the only one authorized to actually send outreach. The last thing any reputable staffing agency wants is an agent going rogue and spamming people, so I made sure only a human can act outside the system. It's one of the ways I keep my agentic systems safe — both from launching attacks and from being on the receiving end of one.
+
+**3. Consistent grading and reply handling**
+
+Humans have a hard time remembering what they ate yesterday, let alone the grade they gave one candidate out of hundreds weeks ago. Add in emails sent at odd hours or during hectic stretches, and things get lost. This system removes both failure modes.
+
+A background worker polls inbox reply threads and classifies each reply as interested, not interested, or needs human review — anything ambiguous gets routed to a person instead of guessed at. Only candidates who reply with clear interest get graded against that job's actual requirements, with a written rationale attached.
+
+## Building It
+
+I started as the only person on this. Even though I was the most junior person on the team, everyone else was pulled onto other projects, and this became my chance to step up and take a leadership role.
+
+I held weekly client-facing meetings to gather feedback and understand the client's pain points, designed the system architecture, picked the stack, and built the first working end-to-end pipeline — from upload through grading — solo, for a real client who needed something that worked, not something that looked good in a slide deck.
+
+As teammates freed up from their own work, I brought them onto the project and started handing off pieces of it: a background worker here, an integration there, always with a review pass before anything merged. By the end, four of us had touched the codebase.
+
+I'd built the architecture and made the early design decisions myself. Once the working pipeline was up and running, I got to collaborate with and learn from more senior engineers on ways to improve the project — and it's a better system for it.
+
+Going from "the only person who understands this" to "the person other people ask before they touch it" is a different job. Writing code and reviewing someone else's under a deadline aren't the same skill, and I didn't have much practice at the second one going in — but it's something I got a lot of reps on and got better at through this project.
+
+## The Safe Demo
+
+The demo above is seeded with fictional candidates, not real résumés pulled from a real ATS. Search runs for real against that synthetic corpus — you're seeing actual hybrid retrieval, not a canned result. Grading is pre-computed by the system offline, so nobody visiting the page triggers a paid LLM call, and the bill doesn't move whether one person clicks around or ten thousand do. Outreach sending is off entirely — there's no mailbox behind it to send from, and a public demo has no business emailing anyone regardless.
+
+None of that was the easy version. The easy version is a video, or a walkthrough, or "email me and I'll show you." I wanted something a stranger could open and actually use, which meant designing the constraints as carefully as the pipeline itself: what's real, what's fixed-cost, and what's simply off. A demo that can't hurt anyone wasn't a limitation I accepted — it was a requirement I set before I wrote the first line of the demo build. (How it's built is its own post.)
+
+## What's Next
+
+This post is the map; six more will fill in the territory. Coming next: how hybrid search actually merges dense and keyword results, why Postgres flattens "C++," "C#," and "C" into the same search term, how the prompt-injection defenses work end to end, how the safe demo above was actually built, what running MCP in production looks like, and why I picked Next.js over the alternatives. If any one of those is the part you came for, it's coming.
