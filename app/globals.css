@@ -867,6 +867,10 @@ p {
   margin-top: 1.8em;
 }
 
+.prose h3 + p {
+  margin-top: 0.5em;
+}
+
 .prose :where(ul, ol) {
   margin: 1em 0;
   padding-left: 1.25em;

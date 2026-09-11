@@ -103,7 +103,7 @@ export const projects = [
       "A Next.JS dashboard that sits on top of a FastAPI backend with a PostgreSQL Database. Allows for job/candidate uploads, a Hybrid Semantic Search (BM25/Semantic Search), a full intent-triage system for email response, and directed LLM analysis on resumes to create consistent resume scoring.",
     stack: ["Python", "FastAPI", "Hybrid Semantic Search", "Agentic Pipeline", "Next.js", "PostgreSQL", "RAG", "Typescript", "CI/CD", "LLM Evaluation"
         ],
-    href: "https://unofficial-bullhorn-ats-dashboard-chi.vercel.app/",
+    href: "https://zahir-choudhry.com/blogs/agentic-pipline",
     featured: true,
   },
   {
@@ -113,7 +113,7 @@ export const projects = [
     details:
       "Built a FastAPI chatbot with a mock RAG pipeline and an automated adversarial test suite, pairing an intentionally insecure endpoint against a hardened one to validate defenses against untrusted input — the kind of trust boundary that matters for an agent talking directly to users. Implemented input-filtering and output-guardrail middleware to block prompt-injection and data-exfiltration attacks without rejecting legitimate conversation.",
     stack: ["Python", "FastAPI", "Prompt-Injection Defense", "RAG"],
-    href: "https://www.chatbot-security.vercel.app/",
+    href: "https://zahir-choudhry.com/blogs/security-chatbot",
     featured: true,
   },
   {

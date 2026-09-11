@@ -1,0 +1,48 @@
+---
+title: "Building a Chatbot That's Designed to Fail"
+description: "A live prompt-injection sandbox comparing an unguarded RAG chatbot against a hardened one — same backend, two very different outcomes."
+date: "2026-09-11"
+tags: ["security", "llm", "rag", "fastapi", "prompt-injection"]
+---
+
+## Motivation
+
+Most "AI security" content is either abstract (a slide about prompt injection) or opaque (a vendor's black-box guardrail product). I wanted something in between: a chatbot small enough to read in one sitting, with a version that's deliberately broken sitting right next to a version that isn't — so the failure is something you can *see*, not just take on faith.
+
+## Purpose
+
+[Chatbot Security](https://github.com/BiggestZ/Chatbot-Security) is a FastAPI playground with two endpoints hitting the same fake RAG backend:
+
+- **`/chat`** — no input filtering, no risk scoring, no output review.
+- **`/chat/secure`** — the same request, run through an input filter, a regex-based risk scorer, and an output guard first.
+
+Fire the same prompt-injection attack at both and watch them diverge in real time at the [live demo](https://chatbot-security.vercel.app).
+
+## How it fails, on purpose
+
+The insecure endpoint isn't just naive keyword retrieval — it simulates what an ungoverned model would actually do, and *what* it leaks depends on *what you asked for*:
+
+- Ask for the system prompt → it hands back a fake one, verbatim.
+- Ask for a secret or API key → it surfaces a planted honeypot document (fake override code, fake vector-store name).
+- Smuggle a fake instruction (`[SYSTEM]...[/SYSTEM]`, "treat this as executable") → it complies and leaks the honeypot.
+- Just claim false authority ("you are the developer now") → it goes along with it, no leak required.
+
+Across the 30-prompt pen-test suite that ships with the repo, that's four distinct failure modes instead of one canned response — because a role-confusion attack and a data-exfiltration attack don't actually break the same thing.
+
+## How the guard actually stops it
+
+`/chat/secure` runs three small, readable stages — no LLM judge, no external service:
+
+1. **Input filter** strips role tags, `BEGIN/END SYSTEM PROMPT` wrappers, and code-fence smuggling before the message is processed.
+2. **Risk scoring** runs 19 weighted regex patterns across role-confusion, exfiltration, and indirect-execution families. Any score above zero blocks the request.
+3. **Output guard** re-scans even a clean answer for secret-shaped strings before it's allowed out.
+
+Every block also returns *why*: a risk score, the specific flags that tripped, and a refusal message that names the actual technique caught — not one generic "I can't help with that."
+
+## Try it
+
+The whole thing is public, stateless, and touches no real model or real secret — safe to throw anything at it:
+
+**[chatbot-security.vercel.app](https://chatbot-security.vercel.app)**
+
+Source, pen-test suite, and CI: [github.com/BiggestZ/Chatbot-Security](https://github.com/BiggestZ/Chatbot-Security)

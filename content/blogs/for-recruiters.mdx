@@ -1,190 +1,159 @@
 ---
+
 title: "Dear Recruiters"
-date: "2026-03-24"
-description: "My Personal Message to any recruiters that come across this page."
+date: "2026-09-11"
+description: "A little more about me, what I like to work on, and how I work with people."
 tags:
   - nextjs
   - mdx
   - portfolio
 featured: true
+
 ---
+
 # Dear Recruiters
-<br/>
+
 Hi — I'm Zahir.
 
-If you're reading this, there's a good chance you're evaluating candidates for a role, and you landed on my website while reviewing my background.
+If you're reading this, there's a good chance you found my website while looking through my background. 
+Instead of writing another version of my resume, I wanted to share a little more about **what I like to work on, 
+how I work with people, and what I've learned along the way.**
 
-Rather than repeating what's on my resume, I wanted to use this space to give you a clearer sense of **how I think as an engineer and the kinds of problems I enjoy solving.**
+> I update this document every few week, so feel free to come back every now and again to see what I have 
+been up to!
 
----
+## I Like Building Things People Actually Use
 
-## I Like Building Systems That Remove Friction
-<br/>
-Most of the work I've done so far has focused on identifying slow or manual workflows and turning them into **fast, automated systems**.
+A lot of my work has started with a pretty simple question:
 
-At **Gentoro**, I worked on an agentic AI workflow designed to automate parts of the recruiting workflow. The system screens resumes against job descriptions and processes incoming candidate data automatically.
+**"Why are we doing this manually?"**
 
-To make that work in practice, I built:
+At Gentoro.ai, I'm currently working as an AI Engineer on a recruiting workflow that automates parts of the sourcing 
+and screening process. What started as a small prototype has grown into a production system that sits in front of a 
+client's ATS. The system takes in job postings and candidate data, searches a large résumé corpus, helps draft recruiter outreach, 
+and evaluates candidate responses. Under the hood, it uses a combination of traditional filters, hybrid search, LLMs,
+and agentic workflows.
 
-- a **Flask-based ingestion system** that processes resumes as soon as they are uploaded  
-- **real-time file watchers** that trigger the evaluation pipeline immediately  
-- **API integrations using MCP servers** to unify scheduling and notifications  
+I've worked on everything from the ingestion pipeline and API integrations to the retrieval and evaluation systems. 
+As the project grew, I also started working more closely with teammates and clients — figuring out what was actually 
+useful, what wasn't, and what we should build next. 
 
-The result was a system that reduced candidate matching turnaround from **hours to near real-time**.
+That last part has probably been one of my favorite parts of the job.
 
-What I enjoyed most about this project wasn't just working with LLMs — it was designing the **infrastructure around them** that allowed the system to function reliably.
+It's easy to get excited about a new model or framework. It's harder, and usually more useful, to sit down with 
+someone who will actually use the software and figure out what they need.
 
----
+You can read more about the project in my [Bullhorn Agentic Dashboard post](https://zahir-choudhry.com/blogs/bullhorn-pipline), or 
+[try the live demo](https://unofficial-bullhorn-ats-dashboard-chi.vercel.app/).
 
-## I Enjoy Turning Complex Workflows Into Simple Tools
-<br/>
-During my internship at **Onto Innovation**, I worked with optical engineers analyzing interferometer data for lens comparisons. Their process involved manually comparing data sets, which could take 
-**over two hours per analysis**. I built a visualization tool that allowed engineers to compare and interpret that data through a streamlined interface.
+## I Like Working With the People Behind the Problem
 
-**The result: Analysis time dropped from 2+ hours to about 5 minutes.**
+One of the things I've learned from working on real projects is that the technical problem is rarely the whole problem.
 
-After presenting the tool to senior engineers and leadership, the framework was approved for broader adoption across engineering teams.
+During my internship at Onto Innovation, I worked with optical engineers who were analyzing interferometer data for lens
+comparisons. Their existing process involved manually comparing datasets and could take more than two hours for a single 
+analysis.
 
-That project reinforced something important for me:
+I built a visualization tool that brought the process down to about five minutes.
 
-> The best engineering work often comes from understanding someone else's workflow and removing the friction from it.
+The technical part was fun, but what made the project work was spending time with the engineers who would actually use it. 
+I had to understand what information they cared about, what they were looking for when comparing results, and what would 
+make the tool useful rather than just technically impressive.
 
----
+After presenting it to senior engineers and leadership, the framework was approved for broader use across engineering 
+teams.
 
-## Teaching Made Me a Better Engineer
-<br/>
-While studying computer science at Occidental College, I also worked as a CS tutor.
+That experience stuck with me. **I like building software, but I especially like building software with the people who 
+are going to use it and think "Man am I glad we have this!"**
 
-Over time I worked with **100+ students across 150+ hours**, helping them with:
+## I Enjoy Explaining Things
 
-- Python
-- Java
-- C++
-- debugging strategies
-- object-oriented programming
-- algorithms
+Before I started working full-time as an engineer, I spent a lot of time teaching.
 
-Teaching forced me to articulate concepts clearly and break down complex ideas into simple explanations.
+While studying Computer Science at Occidental College, I worked as a CS tutor and instructor. Across those roles, I 
+worked with more than 100 students and spent 150+ hours teaching Python, Java, C++, algorithms, and debugging.
 
-That skill translates directly into engineering teams where communication and collaboration matter as much as writing good code.
+Teaching is probably one of the best things I've done for my communication skills.
 
----
+You quickly learn that knowing how something works isn't the same as being able to explain it. Sometimes you need to 
+start with the big picture. Sometimes you need to draw it out. Sometimes the person you're helping just needs someone to 
+sit with them while they work through the problem themselves, and I try to bring that same approach to engineering.
 
-## How I Approach Engineering
+If I'm working with another engineer, a recruiter, a client, or someone who doesn't write code, I try to meet them 
+where they are rather than assuming everyone sees the problem the same way I do. I feel like teaching otheres has taught
+me that sometimes having less domain knowledge allows you to approach problems from different views that others may have
+not been able to see.
 
-<br/>
-Across my internships and projects, a few principles guide how I build software.
+## I Like Being Around People Who Build Things
 
-### I think in systems
+I'm at my best on teams where people are comfortable asking questions, bouncing ideas around, and figuring things out 
+together.
 
-Most interesting engineering problems involve multiple moving parts: APIs, pipelines, models, and infrastructure. I enjoy designing how those pieces interact—not just to make them work, but to make them reliable, observable, and scalable.
+I don't expect to have the right answer immediately. I'd much rather have someone challenge an idea early than discover 
+six weeks later that we built the wrong thing.
 
-I tend to zoom out before I dive in:
+I've been luck to have the opportunity to work closely with teammates and clients across the various jobs I have had. 
+Those conversations that we had in team huddles and product demos have changed the direction of things I've built more than once. 
+I've learned to appreciate that.
 
-* Where are the bottlenecks?
-* What fails under load?
-* How will this evolve over time?
+A good engineering team isn't just a group of people who can write good code. It's a group where people 
+**communicate, help each other, disagree constructively, and care about the outcome.**
 
-This helps me avoid local optimizations and instead build systems that hold up in real-world conditions.
+That's the kind of team I'm looking for.
 
----
+## I Still Like Getting Into the Technical Details
 
-### I take ownership
+The people side is important to me, but I wouldn't be doing this if I didn't enjoy the technical work.
+I like taking a messy problem and figuring out how the pieces should fit together.
+That might mean designing a FastAPI backend, figuring out how to structure a LangGraph workflow, 
+debugging an API integration, tuning retrieval, or figuring out why something that worked locally is suddenly 
+unhappy inside a Docker container.
 
-I like owning problems end-to-end—from vague requirements to a working, deployed solution.
+I've learned a lot by building things that didn't work the first time.
 
-That includes:
+I usually start simple, get something working, and then figure out where the real problems are. From there,
+I'll worry about things like performance, reliability, observability, and scaling. I don't think every project 
+needs a complicated architecture. Sometimes the best solution is the boring one.
 
-* Scoping the problem clearly
-* Making reasonable tradeoffs
-* Following through on implementation and polish
+## Some Things I've Built
 
-I don’t just aim to complete tasks, but to deliver outcomes.
+### Bullhorn Agentic Dashboard
 
----
+This is the project I work on at Gentoro. It started as a prototype and has grown into a larger agentic workflow for 
+recruiting. It handles candidate sourcing, résumé matching, outreach drafting, and candidate reply evaluation while keeping a 
+recruiter in control of communications. I built the first version end-to-end and later worked with teammates as the project grew. There's a [live demo](https://unofficial-bullhorn-ats-dashboard-chi.vercel.app/) 
+with fictional candidates and the source is available on [GitHub](https://github.com/BiggestZ/unofficial-bullhorn-ats-dashboard).
 
-### I value simplicity
-
-Simple systems are easier to maintain, debug, and extend.
-
-I try to:
-
-* Avoid over-engineering early
-* Choose straightforward solutions when they work
-* Introduce complexity only when it’s justified
-
-Good engineering isn’t about using the most advanced pattern—it’s about using the right level of abstraction.
-
----
-
-### I communicate clearly
-
-Engineering is a team activity. I make an effort to:
-
-* Write code that others can read and understand
-* Document decisions and tradeoffs
-* Ask questions early when something is unclear
-
-Clear communication reduces friction and helps teams move faster.
-
----
-
-### I care about iteration, not perfection
-
-I aim to get something working quickly, then improve it.
-
-Instead of trying to design the perfect system upfront, I:
-
-* Ship early versions
-* Learn from real usage
-* Refactor based on actual needs
-
-This keeps progress steady and grounded in reality.
-
-
----
-## What I have been Building
-
-While I have continued my career at Gentoro.ai, I have also continued to learn by building personal projects in my own time.
-<br/>
 ### Candidate Database
-I had a conversation with a friend working at a local VC firm. Part of our conversation was focused around 
-the hiring process of portfolio companies at his firm. He described the process of finding promising candidates
-for their portfolio companies but not having current roles for them, but when a role does come around, they
-currently have no system in place to help track down candidates they previously interviewed.
 
-After hearing this I decided to play around with the idea, and ended up building:
-- A React frontend to create a simple user-friendly UI to interact with the Database as well as a Chatbot for Natural Lang. Query
-- A Fastapi backend to create API endpoints to query the llm and help with ensuring valid data (With room to expand in the future)
-- Postgres server + pgvector to allow for a vector search among their clients using cosine similarity search to find person closest to their query.
-- The app also includes a more traditional filter mode to find clients and allows for CRUD abilities related to client profiles.
-These technologies were used to create an MVP of a potential in-house DB they could use to pull 
-promising clients via Natural Language. As of now there is not word on whether the company will adopt the Database
-but I will post an update as soon as I get one.
+This one started with a conversation.
+A friend working at a local VC firm mentioned that his team regularly met strong candidates who didn't have an 
+immediate role available. Those candidates could easily get lost once the conversation was over.
+I thought it would be interesting to build something that could help solve that.
+The result was a small candidate database with a React frontend, FastAPI backend, Postgres + pgvector, traditional 
+filters, and a chatbot that lets you search candidates using natural language.
 
-
----
+The interesting part wasn't really the technology. It was taking something someone mentioned in conversation and 
+turning it into a working prototype.There's no word yet on whether they'll actually use it, but that's part of the 
+fun of building things outside of work.
 
 ## What I'm Looking For
 
-I'm particularly excited about opportunities in:
+I'm interested in roles involving:
 
-- AI engineering
-- backend systems
-- developer platforms
-- applied machine learning
-- infrastructure that supports intelligent systems
+* AI engineering
+* Backend systems
+* Applied machine learning
+* Developer platforms
+* Infrastructure for intelligent systems
 
-Environments where engineers have ownership over the systems they build are especially appealing to me.
-
----
+More than a specific title, I'm looking for a team where I can **build, learn, and work with good people.**
+I want to be around engineers who care about doing good work, people who are willing to teach each other, and teammates who don't take themselves too seriously.
+I'm still early in my career, so I'm looking for somewhere I can take on real responsibility while continuing to learn from people who are better than me.
 
 ## If You're Hiring
 
-Thanks for taking the time to read this.
+Thanks for making it this far.
+If you think I could be a good fit for your team, I'd be happy to talk. You can reach me through the contact tab on this site.
 
-If you think my background might be a fit for your team, I'd be happy to connect.
-
-Feel free to use my contact form on this website to reach out to me, as well as download my resume on 
-
-my homepage.
+And if you're not hiring right now, that's okay too. I'm always happy to meet people working on interesting problems.
