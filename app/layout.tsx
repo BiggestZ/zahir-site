@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { DM_Serif_Display, Plus_Jakarta_Sans, Syne, Fira_Code } from "next/font/google";
-import "./globals.css";
+import "@app/ui/global.css";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -118,6 +119,7 @@ export default function RootLayout({
           </footer>
         </div>
         <Toaster position="bottom-right" />
+        <Analytics />
       </body>
     </html>
   );

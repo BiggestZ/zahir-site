@@ -1,0 +1,49 @@
+<!--  Ch 2 of Next.js react 
+  <html>
+    <body>
+        <div id="app">
+        </div>
+        <script type="text/javascipt">
+            // Select div element with 'app' id
+            const app = document.getElementbyID('app');
+
+            // Create new H1 element
+            const header = document.createElement("h1");
+
+            // Create new text node for H1 element
+            const text = "A, B, C";
+            const headerContent = document.createTextNode(text);
+
+            // Append text to heade
+            header.appendChild(headerContent);
+
+            app.appendChild(header);
+
+        </script>
+    </body>
+</html> -->
+
+<!-- Ch 4 of Next.js React-->
+<html>
+  <head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@latest?dev",
+          "react-dom/client": "https://esm.sh/react-dom@latest/client?dev"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+ 
+      const domNode = document.getElementById('app');
+      const root = createRoot(domNode);
+      root.render(<h1>Develop. Preview. Ship.</h1>);
+    </script>
+  </body>
+</html>
